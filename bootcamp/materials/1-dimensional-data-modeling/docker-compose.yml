@@ -26,7 +26,7 @@ services:
     restart: unless-stopped
     environment:
       - PGADMIN_DEFAULT_EMAIL=wisdomkoudama@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=9291
+      - PGADMIN_DEFAULT_PASSWORD=${POSTGRES_PASSWORD}
     ports:
       - "8080:80"
     depends_on:
