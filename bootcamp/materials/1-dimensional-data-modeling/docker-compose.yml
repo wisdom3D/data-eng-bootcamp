@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   postgres:
     image: postgres:14
@@ -17,6 +19,18 @@ services:
       - ./data.dump:/docker-entrypoint-initdb.d/data.dump
       - ./scripts/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
       - postgres-data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: unless-stopped
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=wisdomkoudama@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=9291
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
 
 volumes:
   postgres-data:
